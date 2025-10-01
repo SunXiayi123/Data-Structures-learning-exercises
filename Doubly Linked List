@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+//Define node structure
+struct Node{
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+//FUnction to traverse forward
+void traverseForward(struct Node* head){
+    struct Node* temp = head;
+    printf("Forward:");
+    while(temp!=NULL){
+        printf("%d",temp->data);
+        temp = temp->next;
+    }
+}
+
+//Function to traverse backward
+void traverseBackward(struct Node* tail){
+    struct Node* temp = tail;
+    printf("\nBackward:");
+    while(temp != NULL){
+        printf("%d",temp->data);
+        temp = temp->prev;
+    }
+}
+
+int main(){
+    //Create 3 nodes
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));
+   //Assign data and conect nodes
+   head->data = 1;
+   head->prev = NULL;
+   head->next = second;
+   
+   second->data = 2;
+   second->prev = head;
+   second->next = third;
+   
+   third->data = 3;
+   third->prev = second;
+   third->next = NULL;
+   
+   //traverse
+   traverseForward(head);
+   traverseBackward(third);
+   
+   //Free memory
+   free(head);
+   free(second);
+   free(third);
+   
+   return 0;
+}
